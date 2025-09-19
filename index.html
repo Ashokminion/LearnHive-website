@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LearnHive — Career guidance & AI tools for students</title>
+  <meta name="description" content="LearnHive — career guidance, AI tools, roadmaps and resources for college students." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">LearnHive</a>
+
+      <nav class="nav" id="nav">
+        <a href="#about">About</a>
+        <a href="#career">Career Guidance</a>
+        <a href="#tools">AI Tools</a>
+        <a href="#hub">Learning Hub</a>
+        <a href="#contact">Contact</a>
+        <button id="theme-toggle" class="theme-btn" title="Toggle theme">🌗</button>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Welcome to <span class="accent">LearnHive</span></h1>
+          <p class="lead">Career guidance, AI tools, no-code/low-code resources, and roadmaps tailored for college students.</p>
+          <div class="hero-cta">
+            <a href="#hub" class="btn">Explore Roadmaps</a>
+            <a href="#career" class="btn btn-ghost">Career Guidance</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="stats">
+            <div><strong>100+</strong><span>Tools & Resources</span></div>
+            <div><strong>50+</strong><span>Guides & Roadmaps</span></div>
+            <div><strong>Free</strong><span>No cost to start</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section container">
+      <h2 class="section-title">What is LearnHive?</h2>
+      <p class="muted">LearnHive helps students discover career paths, learn AI tools (no-code / low-code / gen-AI), and prepare for both technical and non-technical jobs. Simple roadmaps, real-world skills, and practical tips — ready for college life.</p>
+    </section>
+
+    <!-- CAREER GUIDANCE -->
+    <section id="career" class="section container">
+      <h2 class="section-title">Career Guidance</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Technical</h3>
+          <p>Software dev, AI/ML, Data Science, DevOps. Roadmaps: learn programming, data structures, algorithms, ML basics, projects.</p>
+        </article>
+        <article class="card">
+          <h3>Non-Technical</h3>
+          <p>Product, Sales, Content, Operations. Focus on communication, domain knowledge, internships and certifications.</p>
+        </article>
+        <article class="card">
+          <h3>AI Roles</h3>
+          <p>Prompt engineering, model ops, ML engineer, AI product manager. Start with tools, small projects and deploy demos.</p>
+        </article>
+        <article class="card">
+          <h3>Govt & Exams</h3>
+          <p>TNPSC, UPSC, DRDO, ISRO - strategy, syllabus breakdown, and time-management tips for competitive exams.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- AI TOOLS -->
+    <section id="tools" class="section container">
+      <h2 class="section-title">AI Tools & No-Code</h2>
+      <p class="muted">Quick list of useful tools you can add guides for. Replace links with real resources you prefer.</p>
+      <div class="grid cards">
+        <article class="tool card">
+          <h3>Chat-based LLMs</h3>
+          <p>ChatGPT, Claude — use for brainstorming, coding help, and drafting documents.</p>
+        </article>
+        <article class="tool card">
+          <h3>No-Code / Low-Code</h3>
+          <p>Make websites, automate workflows, prototype AI apps without deep coding.</p>
+        </article>
+        <article class="tool card">
+          <h3>Model Hosting</h3>
+          <p>Intro to simple ways to deploy models: Heroku, Hugging Face Spaces, Vercel (for frontends).</p>
+        </article>
+        <article class="tool card">
+          <h3>Project Ideas</h3>
+          <p>Mini projects for portfolios: recommendation systems, resume parser, chatbot for college FAQs.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- LEARNING HUB -->
+    <section id="hub" class="section container">
+      <h2 class="section-title">Learning Hub — Roadmaps</h2>
+      <div class="grid roadmap">
+        <div class="roadmap-card card">
+          <h4>CS / Software</h4>
+          <ol>
+            <li>Basics: C / Python</li>
+            <li>DS & Algo</li>
+            <li>Web dev + Projects</li>
+            <li>Internships & Open Source</li>
+          </ol>
+        </div>
+        <div class="roadmap-card card">
+          <h4>AI / ML</h4>
+          <ol>
+            <li>Linear Algebra / Probability basics</li>
+            <li>Python + ML libs</li>
+            <li>Small ML projects</li>
+            <li>Deploy models, build portfolio</li>
+          </ol>
+        </div>
+        <div class="roadmap-card card">
+          <h4>Data Science</h4>
+          <ol>
+            <li>SQL & Excel</li>
+            <li>Data cleaning</li>
+            <li>Visualization & storytelling</li>
+            <li>Capstone projects</li>
+          </ol>
+        </div>
+      </div>
+      <p class="muted">Tip: Add downloadable PDFs for each roadmap and short video lessons.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container contact-section">
+      <h2 class="section-title">Contact / Get started</h2>
+      <p class="muted">Replace the form action with your Formspree endpoint or other backend when ready.</p>
+
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="_replyto" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© LearnHive — Built with ❤️ by Ashok (Edit this)</div>
+      <div class="muted">Follow: <a href="#">GitHub</a> • <a href="#">LinkedIn</a></div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
