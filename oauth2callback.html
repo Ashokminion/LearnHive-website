@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Callback - LearnHive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #8b45ff 0%, #39ff14 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            color: white;
+        }
+        
+        .callback-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        h2 {
+            margin-bottom: 10px;
+        }
+        
+        p {
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .success {
+            color: #39ff14;
+            background: rgba(57, 255, 20, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .redirect-btn {
+            background: #39ff14;
+            color: #8b45ff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .redirect-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="callback-container">
+        <div class="spinner" id="spinner"></div>
+        <h2>Processing Authentication...</h2>
+        <p>Please wait while we complete your sign-in process.</p>
+        <div id="message"></div>
+        <a href="index.html" class="redirect-btn" id="redirectBtn" style="display: none;">Return to LearnHive</a>
+    </div>
+
+    <script>
+        // Handle OAuth callback
+        function handleOAuthCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const error = urlParams.get('error');
+            const state = urlParams.get('state');
+            
+            const spinner = document.getElementById('spinner');
+            const message = document.getElementById('message');
+            const redirectBtn = document.getElementById('redirectBtn');
+            
+            if (error) {
+                // Handle error
+                spinner.style.display = 'none';
+                message.innerHTML = `
+                    <div class="error">
+                        <strong>Authentication Failed</strong><br>
+                        Error: ${error}<br>
+                        ${urlParams.get('error_description') || 'Please try again.'}
+                    </div>
+                `;
+                redirectBtn.style.display = 'inline-block';
+                return;
+            }
+            
+            if (code) {
+                // Success - we have an authorization code
+                spinner.style.display = 'none';
+                message.innerHTML = `
+                    <div class="success">
+                        <strong>Authentication Successful!</strong><br>
+                        You have been successfully signed in with Google.<br>
+                        Redirecting you back to LearnHive...
+                    </div>
+                `;
+                
+                // Store the authorization code (in a real app, you'd send this to your backend)
+                localStorage.setItem('oauth_code', code);
+                if (state) {
+                    localStorage.setItem('oauth_state', state);
+                }
+                
+                // Redirect back to main page after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000);
+                
+                redirectBtn.style.display = 'inline-block';
+            } else {
+                // No code or error - something went wrong
+                spinner.style.display = 'none';
+                message.innerHTML = `
+                    <div class="error">
+                        <strong>Authentication Error</strong><br>
+                        No authorization code received. Please try signing in again.
+                    </div>
+                `;
+                redirectBtn.style.display = 'inline-block';
+            }
+        }
+        
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', handleOAuthCallback);
+    </script>
+</body>
+</html>
